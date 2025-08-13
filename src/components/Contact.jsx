@@ -21,7 +21,7 @@ const Contact = () => {
     <>
       <section
         id="contact"
-        className={`relative z-[1] ${location.pathname !== "/contact" ? "lg:h-full xl:h-screen" : "xl:h-[90vh]"}  flex items-center `}
+        className={`relative z-[1] ${location.pathname !== "/contact" ? "lg:h-full 2xl:h-screen" : "xl:h-[90vh]"}  flex items-center `}
         style={{
           backgroundImage: `${
             location.pathname !== "/contact" ? `url(${contactBanner})` : "none"

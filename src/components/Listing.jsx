@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useMemo, useDeferredValue } from "react";
+import React, {
+  useState,
+  useEffect,
+  useMemo,
+  useDeferredValue,
+  useRef,
+} from "react";
 import { motion } from "framer-motion";
 import FilterCheckboxList from "./FilterCheckboxList";
 import Card from "./Card";
@@ -166,10 +172,19 @@ const categories = [
 ];
 
 export default function Listing() {
+  const sectionRef = useRef(null);
   const [selectedFilters, setSelectedFilters] = useState([]);
   const [activeTab, setActiveTab] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
+
+  // helper: smooth scroll to section top (adjust offset if you have a sticky header)
+  const scrollToSectionTop = (offset = 80) => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const y = el.getBoundingClientRect().top + window.pageYOffset - offset;
+    window.scrollTo({ top: y, behavior: "smooth" });
+  };
 
   const allPrices = useMemo(() => airplanes.map((a) => a.price), []);
   const minPrice = Math.min(...allPrices);
@@ -214,10 +229,18 @@ export default function Listing() {
     return filteredAirplanes.slice(start, start + itemsPerPage);
   }, [filteredAirplanes, currentPage]);
 
-  useEffect(() => setCurrentPage(1), [selectedFilters, priceRange, activeTab]);
+  // When filters / price / tab changes → reset page + scroll to top
+  useEffect(() => {
+    setCurrentPage(1);
+    scrollToSectionTop();
+  }, [selectedFilters, priceRange, activeTab]);
 
   return (
-    <section id="showroom" className="bg-[#111218] relative z-[10]">
+    <section
+      id="showroom"
+      ref={sectionRef}
+      className="bg-[#111218] relative z-[10] py-10"
+    >
       <div className="container px-6">
         <div className="text-center mb-20">
           <h1 className="text-4xl font-bold text-white pt-10">
@@ -243,7 +266,10 @@ export default function Listing() {
 
         <div className="filter mb-4 lg:hidden flex justify-end">
           <IoFilterSharp />
-          <button onClick={() => setIsOpen(!isOpen)} className="text-white flex items-center gap-2">
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="text-white flex items-center gap-2"
+          >
             Filter
           </button>
         </div>
@@ -321,7 +347,10 @@ export default function Listing() {
                   <Pagination
                     count={totalPages}
                     page={currentPage}
-                    onChange={(e, value) => setCurrentPage(value)}
+                    onChange={(_, value) => {
+                      setCurrentPage(value);
+                      scrollToSectionTop(); // smooth scroll on page change
+                    }}
                     color="primary"
                   />
                 </div>
