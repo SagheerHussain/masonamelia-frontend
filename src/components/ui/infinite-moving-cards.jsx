@@ -86,15 +86,15 @@ const InfiniteMovingCards = ({
                     aria-hidden="true"
                     className="user-select-none pointer-events-none absolute -top-0.5 -left-0.5 -z-1 h-[calc(100%_+_4px)] w-[calc(100%_+_4px)]"
                   ></div>
-                  <span className="relative z-20 text-[13px] md:text-[15px] leading-[1.6] font-normal text-[#ddd] dark:text-gray-100">
+                  <span className="relative z-20 text-[13px] md:text-[16px] leading-[1.6] font-normal text-[#ddd] dark:text-gray-100">
                     {item.quote?.slice(0, 250) + "..."}
                   </span>
                   <div className="relative z-20 mt-6 flex flex-row items-center justify-center">
                     <span className="flex flex-col gap-1">
-                      <span className="text-base leading-[1.6] font-normal text-[#ddd] dark:text-gray-400">
+                      <span className="text-[1.1rem] leading-[1.6] font-normal text-[#ddd] dark:text-gray-400">
                         {item.name}
                       </span>
-                      <span className="text-base leading-[1.6] font-normal text-[#ddd] dark:text-gray-400">
+                      <span className="text-[1.1rem] leading-[1.6] font-normal text-[#ddd] dark:text-gray-400">
                         {item.tagline}
                       </span>
                     </span>

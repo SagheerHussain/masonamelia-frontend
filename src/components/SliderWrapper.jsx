@@ -162,7 +162,7 @@ const SliderWrapper = () => {
                     <h4 className="text-lg lg:text-lg xl:text-xl text-white mb-4 mt-8">
                       {card.title}
                     </h4>
-                    <p className="text-[#eee] text-sm font-light mb-4 max-w-4xl">
+                    <p className="text-[#eee] text-base font-light mb-4 max-w-4xl">
                       {card.description}
                     </p>
                     {/* <div className="z-[9999]">
