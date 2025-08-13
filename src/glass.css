@@ -1,0 +1,113 @@
+/* ========== GLASS CONTAINER ========== */
+.glass-container {
+  position: relative;
+  margin: 0 auto;
+  text-align: center;
+  font-weight: 600;
+  color: var(--lg-text);
+  background: #1112184c;
+  border-radius: 50px;
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.02), 0 0 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 2.2);
+  border: 1px solid #46485D;
+  overflow: hidden !important;
+}
+
+/* @media screen and (max-width: 768px) {
+  .glass_card {
+    overflow: visible !important;
+  }
+} */
+
+/* ========== GLASS LAYERS ========== */
+.glass-filter {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  backdrop-filter: blur(4px);
+  isolation: isolate;
+}
+
+.glass-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: var(--lg-bg-color);
+}
+
+.glass-specular {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  overflow: hidden;
+  /* border: 1px solid red; */
+  box-shadow: inset 1px 1px 0 var(--lg-highlight),
+    inset 0 0 5px var(--lg-highlight);
+}
+
+.glass-content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 0px;
+  padding: 1rem 0.9rem;
+  height: 100%;
+}
+
+.glass-content--inline {
+  padding: 0.25rem 0.75rem 0.25rem 0.75rem;
+  /* flex: 1 1 auto; */
+  justify-content: center;
+}
+
+/* ========== ICONS AND IMAGES ========== */
+.glass-content a {
+  display: inline-block;
+  position: relative;
+  padding: 1px;
+  border-radius: 1.2rem;
+}
+
+.glass-content a img {
+  display: block;
+  /* width: 75px; */
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 2.2);
+}
+
+.glass-content a img:hover {
+  transform: scale(0.95);
+}
+
+
+
+@keyframes dropdownFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-25%);
+  }
+}
+
+@keyframes dropdownFadeOut {
+  0% {
+    opacity: 1;
+    transform: translateY(-25%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-animate-in {
+  animation: dropdownFadeIn 0.3s ease-out forwards;
+}
+
+.dropdown-animate-out {
+  animation: dropdownFadeOut 0.3s ease-out forwards;
+}
