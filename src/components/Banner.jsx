@@ -13,14 +13,14 @@ const Banner = ({ url }) => {
         style={{
           backgroundImage: `linear-gradient(to right,rgb(21, 22, 28, ${
             media ? ".8" : "1"
-          }) ${media ? "100%" : "20%"}, rgba(0, 0, 0, 0.05)), url(${url})`,
+          }) ${media ? "100%" : "35%"}, rgba(0, 0, 0, 0.01)), url(${url})`,
           backgroundSize: "cover",
           backgroundAttachment: "fixed",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
         }}
       >
-        <div className="overlay bg-black opacity-60 absolute top-0 left-0 w-full h-full z-[-1]"></div>
+        {/* <div className="overlay bg-black opacity-60 absolute top-0 left-0 w-full h-full z-[-1]"></div> */}
 
         <Navbar />
 

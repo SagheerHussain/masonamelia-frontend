@@ -6,6 +6,9 @@ import { IoIosGlobe } from "react-icons/io";
 import { GiCommercialAirplane } from "react-icons/gi";
 import { GrSecure } from "react-icons/gr";
 import { SiTrustpilot } from "react-icons/si";
+import slideOne from "/images/showcase/one.png";
+import slideTwo from "/images/showcase/two.png";
+import slideThree from "/images/showcase/three.png";
 
 // Import Swiper styles
 import "swiper/css";
@@ -53,6 +56,15 @@ const SliderWrapper = () => {
     },
   ];
 
+  const images = [
+    slideOne,
+    slideTwo,
+    slideThree
+    // agar rename nahi kiya to:
+    // encodeURI("/assets/images/showcase/slider (1).png")
+  ];
+  
+
   return (
     <>
       <section className="h-screen relative z-[0] w-screen py-40 overflow-x-hidden">
@@ -68,19 +80,16 @@ const SliderWrapper = () => {
             }}
             className="mySwiper z-[-10]"
           >
-            {[
-              "https://static.wixstatic.com/media/04f737_9493f31851e9469f97c2ae6b820f5802~mv2.jpg/v1/fill/w_1719,h_341,al_c,q_85,enc_avif,quality_auto/04f737_9493f31851e9469f97c2ae6b820f5802~mv2.jpg",
-              "https://static.wixstatic.com/media/04f737_2658b2d02ad6476d8b75651269c301e9~mv2.jpg/v1/fill/w_1200,h_238,al_c,q_80,enc_avif,quality_auto/04f737_2658b2d02ad6476d8b75651269c301e9~mv2.jpg",
-              "https://static.wixstatic.com/media/04f737_aed1d2f6663144b1af3fcf6d875e1971~mv2.jpg/v1/fill/w_1905,h_378,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/04f737_aed1d2f6663144b1af3fcf6d875e1971~mv2.jpg",
-            ].map((item, index) => (
+            {images?.map((item, index) => (
               <SwiperSlide
                 key={index}
-                className="w-screen "
+                className="w-screen"
                 style={{
                   backgroundImage: `url(${item})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                   backgroundRepeat: "no-repeat",
+                  minHeight: "100vh"
                 }}
               ></SwiperSlide>
             ))}
@@ -88,13 +97,6 @@ const SliderWrapper = () => {
         </div>
 
         <div className="container px-5 h-full flex items-center z-[10]">
-          {/* <Aurora
-            colorStops={["#222", "#444", "#222"]}
-            blend={0.5}
-            amplitude={1.0}
-            speed={0.5}
-          /> */}
-
           <svg style={{ display: "none" }}>
             <filter id="lg-dist" x="0%" y="0%" width="100%" height="100%">
               <feTurbulence
@@ -165,12 +167,6 @@ const SliderWrapper = () => {
                     <p className="text-[#eee] text-base font-light mb-4 max-w-4xl">
                       {card.description}
                     </p>
-                    {/* <div className="z-[9999]">
-                        <Button
-                          buttonLabel="Let Us Help"
-                          onClick={"/contact"}
-                        />
-                      </div> */}
                   </div>
                 </motion.div>
               ))}

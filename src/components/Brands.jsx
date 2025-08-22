@@ -1,16 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { motion, useAnimationFrame } from "framer-motion";
-
-import branOne from "/images/brands/cirrus.avif";
-import branTwo from "/images/brands/tbm.avif";
-import branThree from "/images/brands/pilatus.avif";
-import branFour from "/images/brands/epic.avif";
-import branFive from "/images/brands/diamond.avif";
-import branSix from "/images/brands/beechcraft.avif";
+import { getBrands } from "../api/brands";
 
 const Brands = () => {
-  const brands = [branOne, branTwo, branThree, branFour, branFive, branSix];
-  const baseImages = [...brands, ...brands];
+  const [brands, setBrands] = useState([]);
+  const baseImages = useMemo(() => [...brands, ...brands], [brands]);
 
   const xRef = useRef(0);
   const containerRef = useRef(null);
@@ -18,15 +12,26 @@ const Brands = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await getBrands();
+        if (res?.success && Array.isArray(res.data)) {
+          const logos = res.data.map(b => b.logo).filter(Boolean);
+          setBrands(logos);
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    })();
+  }, []);
+
   useAnimationFrame((t, delta) => {
     if (containerRef.current && !isHovered) {
-      xRef.current -= 0.05 * delta; // Adjust speed
+      xRef.current -= 0.05 * delta;
       containerRef.current.style.transform = `translateX(${xRef.current}px)`;
-
       const containerWidth = containerRef.current.scrollWidth / 2;
-      if (Math.abs(xRef.current) >= containerWidth) {
-        xRef.current = 0;
-      }
+      if (Math.abs(xRef.current) >= containerWidth) xRef.current = 0;
     }
   });
 
@@ -39,12 +44,7 @@ const Brands = () => {
         onMouseLeave={() => setIsHovered(false)}
       >
         {baseImages.map((img, index) => {
-          
-            let scale = 1;
-            if (isHovered && hoveredIndex === index) {
-              scale = 1.3;
-            }
-          
+          const scale = isHovered && hoveredIndex === index ? 1.3 : 1;
           return (
             <motion.img
               key={index}
