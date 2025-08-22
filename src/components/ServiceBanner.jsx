@@ -15,13 +15,13 @@ const ServiceBanner = ({ banner }) => {
       <section
         className="w-screen h-[100vh] md:sticky top-0"
         style={{
-          backgroundImage: `linear-gradient(to right, rgb(21, 22, 28, ${media ? ".95" : "1"}) ${media? "100%" : "40%"}, rgba(21, 22, 28,0.3)), url(${
+          backgroundImage: `linear-gradient(to right, rgb(21, 22, 28, ${media ? ".95" : "1"}) ${media? "100%" : "35%"}, rgba(21, 22, 28,0.3)), url(${
             location.pathname === "/brokerage"
               ? banner
               : banner
           })`,
           backgroundSize: "cover",
-          backgroundPosition: "center",
+          backgroundPosition: "bottom",
           backgroundRepeat: "no-repeat",
           backgroundAttachment: "fixed",
         }}

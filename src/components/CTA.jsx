@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import cta from "/images/showroom/cta.png";
+import cta from "/images/showroom/cta.jpg";
 import Button from "./Button";
 
 const CTA = () => {
@@ -27,7 +27,7 @@ const CTA = () => {
             backgroundImage: `url(${cta})`,
           }}
         >
-          <div className="absolute top-0 left-0 w-full h-full bg-black opacity-80 z-[-1]"></div>
+          <div className="absolute top-0 left-0 w-full h-full bg-black opacity-65 z-[-1]"></div>
           <div className="text-center text-white px-4 z-[5]">
             <h2 className="text-[2rem] md:text-[2.5rem] lg:text-[3rem] xl:text-6xl font-bold mb-4">
               Ready for{" "}

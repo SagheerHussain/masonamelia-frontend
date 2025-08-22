@@ -77,8 +77,8 @@ const Contact = () => {
         id="contact"
         className={`relative z-[1] ${
           location.pathname !== "/contact"
-            ? "lg:h/full 2xl:h-screen"
-            : "2xl:h-[90vh]"
+            ? "lg:h/full 2xl:h-full"
+            : "2xl:h-full"
         } flex items-center`}
         style={{
           backgroundImage:

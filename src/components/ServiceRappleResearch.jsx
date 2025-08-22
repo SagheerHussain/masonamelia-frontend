@@ -1,7 +1,7 @@
 import React from "react";
 import { HiOutlineMail } from "react-icons/hi";
 import { motion } from "framer-motion";
-import banner from "/images/acquisition/service-banner.jpg"
+import banner from "/images/acquisition/service-banner.webp"
 
 const ServiceRappleResearch = ({
   data,
@@ -14,11 +14,12 @@ const ServiceRappleResearch = ({
       <section
         style={{
           backgroundImage: `url(${banner})`,
-          backgroundSize: "cover",
+          backgroundSize: "contain !important",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
+          backgroundAttachment: "fixed"
         }}
-        className="relative xl:h-screen py-20 z-[10] parallax-bg"
+        className="relative xl:h-screen py-20 z-[10]"
       >
         <div className="overlay bg-[#111218df] opacity-[.97] absolute top-0 left-0 w-full h-full z-[-1]" />
         <div className="container px-5 flex flex-col justify-center h-full">

@@ -653,13 +653,6 @@ h6 {
   }
 } */
 
-.parallax-bg {
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 #smooth-wrapper {
   height: 100%;
   overflow: hidden;

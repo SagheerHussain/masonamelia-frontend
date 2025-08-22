@@ -2,7 +2,7 @@ import React from "react";
 import Footer from "../components/Footer";
 import ScrollToTop from "../components/ScrollToTop";
 import ServiceBanner from "../components/ServiceBanner";
-import banner from "/images/acquisition/banner.jpg";
+import banner from "/images/acquisition/banner.png";
 import ServiceBannerContent from "../components/ServiceBannerContent";
 import CTABanner from "../components/CTABanner";
 import ServiceRappleResearch from "../components/ServiceRappleResearch";

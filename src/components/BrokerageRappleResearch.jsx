@@ -2,7 +2,7 @@ import React from "react";
 import banner from "/images/skynet/backgroundBanner.png";
 import { motion } from "framer-motion";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import brokerageBanner from "/images/brokerage/service-banner.jpg";
+import brokerageBanner from "/images/brokerage/service-banner.webp";
 
 const BrokerageRappleResearch = ({
   data,
@@ -17,7 +17,7 @@ const BrokerageRappleResearch = ({
       <section
         style={{
           backgroundImage: `url(${brokerageBanner})`,
-          backgroundSize: "cover",
+          backgroundSize: "contain !important",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           backgroundAttachment: "fixed",

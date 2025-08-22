@@ -6,7 +6,7 @@ import SkynetAdvantage from "../components/SkynetAdvantage";
 import ScrollToTop from "../components/ScrollToTop";
 import SkynetTimeline from "../components/SkynetTimeline";
 import CTABanner from "../components/CTABanner";
-import banner from "/images/skynet/banner.jpg";
+import banner from "/images/skynet/banner.webp";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 const SkynetPage = () => {
