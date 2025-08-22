@@ -20,7 +20,7 @@ const FilterSideBar = ({
       {/* Overlay */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black/60 z-[9998]"
+          className="fixed inset-0 bg-black/60 z-[9]"
           onClick={toggleSidebar}
         />
       )}

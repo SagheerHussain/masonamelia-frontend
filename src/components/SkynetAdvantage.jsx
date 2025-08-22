@@ -7,7 +7,7 @@ const SkynetAdvantage = () => {
     <>
       <section
         id="skynet_advantage"
-        className="py-10 xl:py-20 relative h-screen z-[0] bg-[#15161c]"
+        className="py-10 xl:py-20 relative 2xl:h-screen z-[0] bg-[#15161c]"
       >
         <div className="container px-5 flex items-center h-full">
           <div className="py-16 px-4 md:px-20 text-white">
