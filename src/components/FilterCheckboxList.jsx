@@ -17,11 +17,17 @@
 //   };
 // };
 
+// // format helper: numeric string -> 1,234 | keep mixed strings (e.g. "380/380")
+// const pretty = (v) => {
+//   const n = Number(v);
+//   return Number.isFinite(n) && String(n) === v ? n.toLocaleString() : v;
+// };
+
 // export default function FilterCheckboxList({
 //   selected,
 //   setSelected,
-//   range,
-//   setRange,
+//   range,         // [min,max] from parent
+//   setRange,      // setter from parent
 //   minPrice,
 //   maxPrice,
 // }) {
@@ -54,6 +60,19 @@
 //   useEffect(() => setAirframeIdx(initialAirframe), [initialAirframe]);
 //   useEffect(() => setEngineIdx(initialEngine), [initialEngine]);
 
+//   // ---- Price range: show immediate drag value (no lag), still update parent debounced ----
+//   const safeRange = useMemo(
+//     () =>
+//       Array.isArray(range) && range.length === 2
+//         ? range
+//         : [minPrice, maxPrice],
+//     [range, minPrice, maxPrice]
+//   );
+
+//   const [rangeDraft, setRangeDraft] = useState(safeRange);
+//   useEffect(() => setRangeDraft(safeRange), [safeRange]);
+//   const debouncedSetRange = useDebouncedCallback(setRange, 120);
+
 //   const applyRange = (group, idxRange) => {
 //     const [start, end] = idxRange;
 //     const values = group.slice(start, end + 1);
@@ -80,10 +99,6 @@
 //     );
 //   };
 
-//   const safeRange =
-//     Array.isArray(range) && range.length === 2 ? range : [minPrice, maxPrice];
-//   const debouncedSetRange = useDebouncedCallback(setRange, 120);
-
 //   const clearAll = () => {
 //     setSelected((prev) =>
 //       prev.filter(
@@ -95,7 +110,15 @@
 //     );
 //     setAirframeIdx(defaultAirframe);
 //     setEngineIdx(defaultEngine);
+//     setRangeDraft([minPrice, maxPrice]);
+//     setRange([minPrice, maxPrice]);
 //   };
+
+//   // ---- Dynamic labels for Min/Max (discrete) ----
+//   const airframeMinLabel = AIRFRAME_OPTIONS[airframeIdx[0]];
+//   const airframeMaxLabel = AIRFRAME_OPTIONS[airframeIdx[1]];
+//   const engineMinLabel = ENGINE_OPTIONS[engineIdx[0]];
+//   const engineMaxLabel = ENGINE_OPTIONS[engineIdx[1]];
 
 //   return (
 //     <div className="p-6 rounded-2xl border border-[#ffffff48]">
@@ -140,11 +163,12 @@
 //           )}
 //         />
 //         <div className="flex justify-between mt-3 text-[.6rem] xl:text-base text-gray-300">
-//           {/* {AIRFRAME_OPTIONS.map((lab) => (
-//             <span key={lab}>{lab}</span>
-//           ))} */}
-//           <span className="text-[.6rem] xl:text-xs font-bold">Min: 2500</span>
-//           <span className="text-[.6rem] xl:text-xs font-bold">Max: 7500</span>
+//           <span className="text-[.6rem] xl:text-xs font-bold">
+//             Min: {pretty(airframeMinLabel)}
+//           </span>
+//           <span className="text-[.6rem] xl:text-xs font-bold">
+//             Max: {pretty(airframeMaxLabel)}
+//           </span>
 //         </div>
 //       </div>
 
@@ -170,16 +194,13 @@
 //             <div {...props} className="slider-thumb relative" />
 //           )}
 //         />
-//         <div className="flex justify-between mt-3 text-gray-300">
-//           {ENGINE_OPTIONS.map((lab, i) => (
-//             // <span key={lab} className="text-[.6rem] xl:text-base">
-//             //   {lab}{i === ENGINE_OPTIONS.length - 1 ? "" : "-"}
-//             // </span>
-//             <>
-//             </>
-//           ))}
-//           <span className="text-[.6rem] xl:text-xs font-bold">Min: 2665</span>
-//           <span className="text-[.6rem] xl:text-xs font-bold">Max: 380/380</span>
+//         <div className="flex justify-between mt-3 text-[.6rem] xl:text-base text-gray-300">
+//           <span className="text-[.6rem] xl:text-xs font-bold">
+//             Min: {pretty(engineMinLabel)}
+//           </span>
+//           <span className="text-[.6rem] xl:text-xs font-bold">
+//             Max: {pretty(engineMaxLabel)}
+//           </span>
 //         </div>
 //       </div>
 
@@ -188,8 +209,11 @@
 //         <h3 className="text-sm font-semibold text-white mb-4">Price Range</h3>
 //         <Slider
 //           className="slider"
-//           value={safeRange}
-//           onChange={debouncedSetRange}
+//           value={rangeDraft}
+//           onChange={(v) => {
+//             setRangeDraft(v);        // instant UI update
+//             debouncedSetRange(v);    // parent ko debounced update
+//           }}
 //           min={minPrice}
 //           max={maxPrice}
 //           step={1000}
@@ -204,17 +228,18 @@
 //           renderThumb={(props) => <div {...props} className="slider-thumb" />}
 //         />
 //         <div className="flex justify-between mt-3 text-gray-300">
-//           {/* ${safeRange[0]?.toLocaleString()} – ${safeRange[1]?.toLocaleString()} */}
-//           <span className="text-[.6rem] xl:text-xs font-bold">Min: 3,450,000</span>
-//           <span className="text-[.6rem] xl:text-xs font-bold">Max: 75,000,000</span>
+//           <span className="text-[.6rem] xl:text-xs font-bold">
+//             Min: {Number(rangeDraft?.[0] ?? minPrice).toLocaleString()}
+//           </span>
+//           <span className="text-[.6rem] xl:text-xs font-bold">
+//             Max: {Number(rangeDraft?.[1] ?? maxPrice).toLocaleString()}
+//           </span>
 //         </div>
 //       </div>
 //     </div>
 //   );
 // }
 
-
-// FilterCheckboxList.jsx
 import React, { useMemo, useState, useEffect, useRef } from "react";
 import Slider from "react-slider";
 import CheckBoxGroup from "./CheckBoxGroup";
@@ -238,6 +263,13 @@ const pretty = (v) => {
   const n = Number(v);
   return Number.isFinite(n) && String(n) === v ? n.toLocaleString() : v;
 };
+
+// parse "3517/3421" -> [3517,3421] ; "380/380" -> [380,380] ; "2665" -> [2665]
+const toEngineNums = (s) =>
+  String(s)
+    .split("/")
+    .map((x) => parseFloat(String(x).replace(/,/g, "")))
+    .filter((n) => Number.isFinite(n));
 
 export default function FilterCheckboxList({
   selected,
@@ -330,11 +362,27 @@ export default function FilterCheckboxList({
     setRange([minPrice, maxPrice]);
   };
 
-  // ---- Dynamic labels for Min/Max (discrete) ----
+  // ---- Dynamic labels ----
   const airframeMinLabel = AIRFRAME_OPTIONS[airframeIdx[0]];
   const airframeMaxLabel = AIRFRAME_OPTIONS[airframeIdx[1]];
-  const engineMinLabel = ENGINE_OPTIONS[engineIdx[0]];
-  const engineMaxLabel = ENGINE_OPTIONS[engineIdx[1]];
+
+  // Compute numeric min/max across selected engine slice (for fallback)
+  const engineSlice = ENGINE_OPTIONS.slice(engineIdx[0], engineIdx[1] + 1);
+  const engineNumsInRange = engineSlice.flatMap(toEngineNums);
+  const engineMinNum =
+    engineNumsInRange.length > 0 ? Math.min(...engineNumsInRange) : null;
+  const engineMaxNum =
+    engineNumsInRange.length > 0 ? Math.max(...engineNumsInRange) : null;
+
+  // ✅ Prefer raw "double" label if endpoint contains '/', else show numeric
+  const rawMinEngine = ENGINE_OPTIONS[engineIdx[0]];
+  const rawMaxEngine = ENGINE_OPTIONS[engineIdx[1]];
+  const formatEngineLabel = (raw, num) =>
+    String(raw).includes("/") // show double like "380/380"
+      ? raw
+      : num != null
+      ? num.toLocaleString()
+      : pretty(raw);
 
   return (
     <div className="p-6 rounded-2xl border border-[#ffffff48]">
@@ -388,7 +436,7 @@ export default function FilterCheckboxList({
         </div>
       </div>
 
-      {/* Engine — discrete range */}
+      {/* Engine — discrete range with SMART labels (show double if endpoint has "/") */}
       <div className="mb-8">
         <h3 className="text-sm font-semibold text-white mb-3">Engine</h3>
         <Slider
@@ -412,10 +460,10 @@ export default function FilterCheckboxList({
         />
         <div className="flex justify-between mt-3 text-[.6rem] xl:text-base text-gray-300">
           <span className="text-[.6rem] xl:text-xs font-bold">
-            Min: {pretty(engineMinLabel)}
+            Min: {formatEngineLabel(rawMinEngine, engineMinNum)}
           </span>
           <span className="text-[.6rem] xl:text-xs font-bold">
-            Max: {pretty(engineMaxLabel)}
+            Max: {formatEngineLabel(rawMaxEngine, engineMaxNum)}
           </span>
         </div>
       </div>
@@ -455,4 +503,3 @@ export default function FilterCheckboxList({
     </div>
   );
 }
-
