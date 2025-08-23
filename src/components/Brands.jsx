@@ -67,12 +67,18 @@
 // export default Brands;
 
 
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useMemo } from "react";
 import { motion, useAnimationFrame } from "framer-motion";
-import { getBrands } from "../api/brands";
+
+import brandOne from "/images/brands/one.avif"
+import brandTwo from "/images/brands/two.avif"
+import brandThree from "/images/brands/three.avif"
+import brandFour from "/images/brands/four.avif"
+import brandFive from "/images/brands/five.avif"
+import brandSix from "/images/brands/six.avif"
 
 const Brands = () => {
-  const [brands, setBrands] = useState([]);
+  const brands = [brandOne, brandTwo, brandThree, brandFour, brandFive, brandSix];
   const baseImages = useMemo(() => [...brands, ...brands], [brands]);
 
   const xRef = useRef(0);
@@ -80,21 +86,7 @@ const Brands = () => {
 
   const [isHovered, setIsHovered] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState(null);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const res = await getBrands();
-        if (res?.success && Array.isArray(res.data)) {
-          const logos = res.data.map(b => b.logo).filter(Boolean);
-          setBrands(logos);
-        }
-      } catch (e) {
-        console.error(e);
-      }
-    })();
-  }, []);
-
+  
   useAnimationFrame((t, delta) => {
     if (containerRef.current && !isHovered) {
       xRef.current -= 0.05 * delta;
