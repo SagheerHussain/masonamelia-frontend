@@ -8,12 +8,13 @@ const Banner = ({ url }) => {
   const media = useMediaQuery("(max-width: 767px)");
   return (
     <>
+    <Navbar />
       <div
-        className="bg-img w-full md:sticky top-0 h-screen"
+        className="bg-img w-full md:sticky top-0 h-screen -mt-[5.7rem]"
         style={{
           backgroundImage: `linear-gradient(to right,rgb(21, 22, 28, ${
             media ? ".8" : "1"
-          }) ${media ? "100%" : "35%"}, rgba(0, 0, 0, 0.01)), url(${url})`,
+          }) ${media ? "100%" : "40%"}, rgba(0, 0, 0, 0.01)), url(${url})`,
           backgroundSize: "cover",
           backgroundAttachment: "fixed",
           backgroundRepeat: "no-repeat",
@@ -22,10 +23,9 @@ const Banner = ({ url }) => {
       >
         {/* <div className="overlay bg-black opacity-60 absolute top-0 left-0 w-full h-full z-[-1]"></div> */}
 
-        <Navbar />
 
         <div className="container flex flex-col justify-center h-full md:items-start items-center px-5">
-          <div className="banner-content -mt-[10vh]">
+          <div className="banner-content">
             {/* <h1 className="text-white text-6xl font-bold">Discover the Future of Flight</h1> */}
             <BlurText
               text="Discover the"
