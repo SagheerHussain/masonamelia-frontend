@@ -87,7 +87,7 @@ const SliderWrapper = () => {
                 style={{
                   backgroundImage: `url(${item})`,
                   backgroundSize: "cover",
-                  backgroundPosition: "center",
+                  backgroundPosition: "bottom",
                   backgroundRepeat: "no-repeat",
                 }}
               ></SwiperSlide>
@@ -116,7 +116,7 @@ const SliderWrapper = () => {
             </filter>
           </svg>
 
-          <div className="relative inset-0 flex flex-col items-center gap-8 justify-center text-white z-[20]">
+          <div className="relative inset-0 flex flex-col items-center gap-8 justify-between h-full text-white z-[20]">
             <div className="flex flex-col justify-center items-center">
               <motion.h1
                 initial={{ opacity: 0, y: 80 }}

@@ -16,8 +16,9 @@ const SkynetPage = () => {
 
   return (
     <>
+      <Navbar />
       <section
-        className="md:sticky top-0 h-screen w-full bg-cover bg-center z-[0]"
+        className="md:sticky top-0 h-screen w-full bg-cover bg-center z-[0] -mt-[5.7rem]"
         style={{
           backgroundImage: `linear-gradient(to right, rgb(21, 22, 28, ${
             media ? ".9" : "1"

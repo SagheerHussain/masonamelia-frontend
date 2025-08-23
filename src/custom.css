@@ -1,0 +1,91 @@
+.swiper {
+  position: "static" !important;
+}
+
+.swiper-button-prev:after {
+  color: white !important;
+  background-color: #222 !important;
+  width: 30px !important;
+  height: 30px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  font-size: 12px !important;
+  font-weight: bold !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: fixed !important;
+  transform: translateX(-20%) !important;
+  overflow: visible;
+}
+.swiper-button-next:after {
+  color: white !important;
+  background-color: #222 !important;
+  width: 30px !important;
+  height: 30px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  font-size: 12px !important;
+  font-weight: bold !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: fixed !important;
+  transform: translateX(-20%) !important;
+  overflow: visible;
+}
+
+@media (min-width: 1850px) {
+  .swiper-button-prev:after {
+    left: calc(100vw - 80%) !important;
+  }
+  .swiper-button-next:after {
+    right: calc(100vw - 81%) !important;
+  }
+}
+@media (max-width: 1850px) {
+  .swiper-button-prev:after {
+    left: calc(100vw - 85%) !important;
+  }
+  .swiper-button-next:after {
+    right: calc(100vw - 86%) !important;
+  }
+}
+@media (max-width: 1600px) {
+  .swiper-button-prev:after {
+    left: calc(100vw - 88%) !important;
+  }
+  .swiper-button-next:after {
+    right: calc(100vw - 89%) !important;
+  }
+}
+@media (max-width: 1450px) {
+  .swiper-button-prev:after {
+    left: calc(100vw - 90%) !important;
+  }
+  .swiper-button-next:after {
+    right: calc(100vw - 91%) !important;
+  }
+}
+@media (max-width: 1350px) {
+  .swiper-button-prev:after {
+    left: calc(100vw - 93%) !important;
+  }
+  .swiper-button-next:after {
+    right: calc(100vw - 94%) !important;
+  }
+}
+@media (max-width: 768px) {
+  .swiper-button-prev:after {
+    font-size: 10px !important;
+    width: 20px !important;
+    height: 20px !important;
+    left: calc(100vw - 99%) !important;
+  }
+  .swiper-button-next:after {
+    font-size: 10px !important;
+    width: 20px !important;
+    height: 20px !important;
+    right: calc(100vw - 100%) !important;
+  }
+}

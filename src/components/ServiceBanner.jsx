@@ -12,8 +12,9 @@ const ServiceBanner = ({ banner }) => {
 
   return (
     <>
+      <Navbar />
       <section
-        className="w-screen h-[100vh] md:sticky top-0"
+        className="w-screen h-screen md:sticky top-0 -mt-[5.7rem]"
         style={{
           backgroundImage: `linear-gradient(to right, rgb(21, 22, 28, ${media ? ".95" : "1"}) ${media? "100%" : "35%"}, rgba(21, 22, 28,0.3)), url(${
             location.pathname === "/brokerage"
@@ -26,8 +27,7 @@ const ServiceBanner = ({ banner }) => {
           backgroundAttachment: "fixed",
         }}
       >
-        <Navbar />
-        <div className="px-5 container flex flex-col justify-center h-[90vh] md:items-start items-center">
+        <div className="px-5 container flex flex-col justify-center h-[100vh] md:items-start items-center">
           <motion.h1
             initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: 1, y: 0 }}

@@ -178,7 +178,6 @@ export default function Listing() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
 
-  // helper: smooth scroll to section top (adjust offset if you have a sticky header)
   const scrollToSectionTop = (offset = 80) => {
     const el = sectionRef.current;
     if (!el) return;
@@ -194,7 +193,6 @@ export default function Listing() {
   const [filterOpen, setFilterOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  // Smoother UI during filter changes
   const deferredSelected = useDeferredValue(selectedFilters);
   const deferredPrice = useDeferredValue(priceRange);
   const deferredTab = useDeferredValue(activeTab);
@@ -229,11 +227,15 @@ export default function Listing() {
     return filteredAirplanes.slice(start, start + itemsPerPage);
   }, [filteredAirplanes, currentPage]);
 
-  // When filters / price / tab changes → reset page + scroll to top
   useEffect(() => {
     setCurrentPage(1);
-    scrollToSectionTop();
   }, [selectedFilters, priceRange, activeTab]);
+
+  useEffect(() => {
+    if (filteredAirplanes.length > 0 && filteredAirplanes.length < 4) {
+      scrollToSectionTop();
+    }
+  }, [filteredAirplanes.length]);
 
   return (
     <section
@@ -349,7 +351,7 @@ export default function Listing() {
                     page={currentPage}
                     onChange={(_, value) => {
                       setCurrentPage(value);
-                      scrollToSectionTop(); // smooth scroll on page change
+                      scrollToSectionTop(); // always scroll on page change
                     }}
                     color="primary"
                   />

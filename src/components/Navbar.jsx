@@ -23,7 +23,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`z-[9999] md:p-0 p-2 border-b-[1px] border-[#ffffff33] fixed md:static top-0 w-full text-white flex items-center justify-between  transition-colors duration-300 ${
+      className={`z-[9999] md:p-0 p-2 border-b-[1px] border-[#ffffff33] fixed md:relative top-0 w-full text-white flex items-center justify-between  transition-colors duration-300 ${
         scrolled
           ? "bg-black/70"
           : location.pathname === "/blogs"
@@ -33,6 +33,7 @@ const Navbar = () => {
           : "bg-transparent"
       } md:bg-transparent`}
     >
+
       <div className="ms-2 logo z-[999999] after:content-[''] after:absolute after:bottom-0 after:right-[-10px] after:w-[1px] after:h-full after:bg-[#ffffff33] after:z-[10] group relative">
         <Link to={"/"}>
           {/* <div className="overlay absolute bottom-0 left-0 w-full h-0 group-hover:h-full bg-[#111218] transition-all duration-300 z-[-1]"></div> */}

@@ -13,8 +13,9 @@ const HigherPage = () => {
   const media = useMediaQuery("(max-width: 767px)");
   return (
     <>
+      <Navbar />
       <section
-        className="md:sticky top-0 relative w-full bg-cover h-screen bg-center z-[0]"
+        className="md:sticky top-0 relative w-full bg-cover h-screen bg-center z-[0] -mt-[5.7rem]"
         style={{
           backgroundImage: `linear-gradient(to right,rgb(21, 22, 28, ${
             media ? ".9" : "1"
@@ -22,7 +23,6 @@ const HigherPage = () => {
         }}
       >
         <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50 z-[-1]"></div>
-        <Navbar />
         <div className="container">
           <Higher />
         </div>

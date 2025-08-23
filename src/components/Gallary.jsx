@@ -22,6 +22,7 @@ import GallaryFour from "/images/gallary/image 4.png";
 import GallaryFive from "/images/gallary/image 5.png";
 import GallarySix from "/images/gallary/image 6.png";
 import { HeroParallax } from "./ui/hero-parallex";
+import "../custom.css"
 
 Modal.setAppElement("#root");
 
@@ -81,7 +82,7 @@ const Gallary = () => {
             freeMode={true}
             watchSlidesProgress={true}
             modules={[FreeMode, Thumbs, Navigation, Keyboard]}
-            className="mySwiper"
+            className="mySwiper w-full min-w-screen"
             keyboard={true}
           >
             {products?.map((video, i) => (

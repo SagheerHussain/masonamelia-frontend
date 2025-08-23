@@ -3,8 +3,7 @@ import { motion } from "framer-motion";
 import ShinyText from "./ui/ShinyText";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
-const Higher = () => {
-
+const ContactHeader = () => {
   const media = useMediaQuery("(max-width: 767px)");
 
   return (
@@ -18,9 +17,9 @@ const Higher = () => {
           className="md:text-start text-center md:max-w-2xl lg:max-w-2xl xl:max-w-3xl text-[2rem] text-white md:text-[2.5rem] lg:text-[3rem] xl:text-6xl font-bold mb-2"
           style={{ lineHeight: "1.1" }}
         >
-          Elevating Aircraft Deals Through{" "}
+          Let’s Build{" "}
           <span className="bg-gradient-to-r from-[#1777cb] to-tertiary_color bg-clip-text text-transparent">
-            Visual Stories
+            Aviation Success Together
           </span>
         </motion.h2>
         <motion.div
@@ -35,9 +34,9 @@ const Higher = () => {
           className="max-w-2xl flex justify-start text-center md:text-start"
         >
           <ShinyText
-            isTextCenter={media ? true :false}
+            isTextCenter={media ? true : false}
             text={
-              "At Mason Amelia, we tell aviation stories beyond the specs. Through powerful videos, we connect aircraft with purpose and people."
+              "At Mason Amelia, relationships drive aviation success. Reach out and let’s shape the right course for your journey together."
             }
             disabled={false}
             speed={5}
@@ -49,4 +48,4 @@ const Higher = () => {
   );
 };
 
-export default Higher;
+export default ContactHeader;

@@ -9,7 +9,7 @@ const AboutHeader = () => {
 
   return (
     <>
-      <div className="px-5 container flex flex-col justify-center h-[90vh] md:items-start items-center">
+      <div className="px-5 container flex flex-col justify-center h-[100vh] md:items-start items-center">
         <motion.h1
           initial={{ opacity: 0, y: 100 }}
           animate={{ opacity: 1, y: 0 }}

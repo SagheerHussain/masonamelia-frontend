@@ -8,7 +8,7 @@ const Skynet = () => {
   const media = useMediaQuery("(max-width: 767px)");
 
   return (
-    <section className="h-[90vh]">
+    <section className="h-[100vh]">
       {/* Background Image Right Side */}
       <div className="px-5 container flex flex-col justify-center h-full ">
         <motion.h1
@@ -46,14 +46,6 @@ const Skynet = () => {
             className="text-lg md:text-xl"
           />
         </motion.div>
-        {/* <motion.div
-          initial={{ opacity: 0, y: 100 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ type: "spring", stiffness: 50, duration: 0.5, delay: 0.3 }}
-          className="mt-8 mx-auto md:mx-0 z-[0]"
-        >
-          <Button buttonLabel="Get Started" onClick="/contact" />
-        </motion.div> */}
       </div>
     </section>
   );
