@@ -298,9 +298,7 @@ const AircraftDetail = ({ onOpenModal, currentIndex, setCurrentIndex }) => {
             <h1 className="text-3xl font-bold mb-4 lg:mb-8 text-white">
               {aircraft?.title}
             </h1>
-            <div
-              className="tag-container mb-4"
-            >
+            <div className="tag-container mb-4">
               <div
                 className="tag-left-arrow"
                 style={{ borderRight: "20px solid #1777cb" }}
@@ -450,6 +448,13 @@ const AircraftDetail = ({ onOpenModal, currentIndex, setCurrentIndex }) => {
                     </p>
                   </div>
                 </div>
+              </div>
+
+              <div className="">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d49118.23391548527!2d-111.87382773125353!3d39.697185689909!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x874c5648a65523d9%3A0xd7b6f9f8a451f49e!2sNephi%2C%20UT%2084648%2C%20USA!5e0!3m2!1sen!2s!4v1755939914578!5m2!1sen!2s"
+                  className="w-full h-[180px] mt-6 rounded"
+                ></iframe>
               </div>
             </div>
           </div>
