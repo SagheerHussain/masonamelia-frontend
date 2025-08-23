@@ -182,7 +182,7 @@ export default function Listing() {
     const el = sectionRef.current;
     if (!el) return;
     const y = el.getBoundingClientRect().top + window.pageYOffset - offset;
-    window.scrollTo({ top: y, behavior: "smooth" });
+    window.scrollTo({ top: y + 60, behavior: "smooth" });
   };
 
   const allPrices = useMemo(() => airplanes.map((a) => a.price), []);
